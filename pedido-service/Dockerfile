@@ -11,13 +11,13 @@ COPY notification-service/pom.xml ./notification-service/
 COPY pedido-service/pom.xml ./pedido-service/
 COPY exam-pedido-integration-tests/pom.xml ./exam-pedido-integration-tests/
 
-COPY notification-service/src ./notification-service/src
+COPY pedido-service/src ./pedido-service/src
 
-RUN mvn package -pl notification-service -DskipTests -B && \
-    cp notification-service/target/*.jar app.jar
+RUN mvn package -pl pedido-service -DskipTests -B && \
+    cp pedido-service/target/*.jar app.jar
 
 FROM eclipse-temurin:21-jre-alpine
 WORKDIR /app
 COPY --from=build /workspace/app.jar app.jar
-EXPOSE 8084
+EXPOSE 8087
 ENTRYPOINT ["java", "-jar", "app.jar"]

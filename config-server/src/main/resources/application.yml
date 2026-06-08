@@ -10,3 +10,9 @@ spring:
         native:
           search-locations: file:./config
       fail-fast: false
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info

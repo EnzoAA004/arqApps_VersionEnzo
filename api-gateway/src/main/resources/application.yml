@@ -23,6 +23,12 @@ spring:
             - Path=/api/inventory/**
           filters:
             - AuthorizationHeader
+        - id: pedido-service
+          uri: lb://pedido-service
+          predicates:
+            - Path=/api/pedidos/**
+          filters:
+            - AuthorizationHeader
         - id: proveedor-service
           uri: lb://proveedor-service
           predicates:

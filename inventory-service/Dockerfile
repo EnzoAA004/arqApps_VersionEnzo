@@ -8,6 +8,8 @@ COPY auth-service/pom.xml    ./auth-service/
 COPY api-gateway/pom.xml     ./api-gateway/
 COPY inventory-service/pom.xml ./inventory-service/
 COPY notification-service/pom.xml ./notification-service/
+COPY pedido-service/pom.xml ./pedido-service/
+COPY exam-pedido-integration-tests/pom.xml ./exam-pedido-integration-tests/
 
 COPY inventory-service/src ./inventory-service/src
 

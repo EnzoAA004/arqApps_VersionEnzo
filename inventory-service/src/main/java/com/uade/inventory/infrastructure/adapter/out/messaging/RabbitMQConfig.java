@@ -1,11 +1,15 @@
 package com.uade.inventory.infrastructure.adapter.out.messaging;
 
+import com.uade.inventory.domain.event.ProductCreatedEvent;
 import org.springframework.amqp.core.*;
+import org.springframework.amqp.support.converter.DefaultClassMapper;
 import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
 import org.springframework.amqp.support.converter.MessageConverter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
+
+import java.util.Map;
 
 @Configuration
 @Profile("rabbitmq")
@@ -32,6 +36,11 @@ public class RabbitMQConfig {
 
     @Bean
     public MessageConverter jsonMessageConverter() {
-        return new Jackson2JsonMessageConverter();
+        Jackson2JsonMessageConverter converter = new Jackson2JsonMessageConverter();
+        DefaultClassMapper classMapper = new DefaultClassMapper();
+        classMapper.setIdClassMapping(Map.of("product.created", ProductCreatedEvent.class));
+        classMapper.setTrustedPackages("com.uade.inventory.domain.event");
+        converter.setClassMapper(classMapper);
+        return converter;
     }
 }

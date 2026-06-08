@@ -43,6 +43,8 @@
         <module>api-gateway</module>
         <module>inventory-service</module>
         <module>notification-service</module>
+        <module>pedido-service</module>
+        <module>exam-pedido-integration-tests</module>
     </modules>
 
     <build>
